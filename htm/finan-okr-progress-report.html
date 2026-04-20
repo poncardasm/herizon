@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OKR Progress Report — Skills Showcase (FiNAN Ry)</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --success: #16a34a;
+      --warning: #d97706;
+      --pending: #7c3aed;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .meta {
+      opacity: 0.9;
+      font-size: 0.9rem;
+    }
+
+    .meta span {
+      margin-right: 1.5rem;
+    }
+
+    section {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    section h3 {
+      color: var(--text);
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.8rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: var(--bg);
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tr:hover {
+      background: var(--bg);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .status-done {
+      background: #dcfce7;
+      color: var(--success);
+    }
+
+    .status-progress {
+      background: #dbeafe;
+      color: var(--primary);
+    }
+
+    .status-pending {
+      background: #f3e8ff;
+      color: var(--pending);
+    }
+
+    .priority-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+
+    .priority-p0 {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .priority-p1 {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .priority-p2 {
+      background: #dbeafe;
+      color: var(--primary);
+    }
+
+    ul {
+      margin: 0.5rem 0 0.5rem 1.5rem;
+    }
+
+    ul.tasks {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    ul.tasks li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul.tasks li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist li {
+      position: relative;
+      padding-left: 0.3rem;
+    }
+
+    blockquote {
+      background: var(--bg);
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .insight-card {
+      background: var(--bg);
+      padding: 1.2rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .insight-card h4 {
+      color: var(--primary);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .insight-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      background: var(--bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--primary-dark);
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tech-tag {
+      background: var(--bg);
+      padding: 0.3rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      header {
+        padding: 1.5rem;
+      }
+
+      header h1 {
+        font-size: 1.4rem;
+      }
+
+      section {
+        padding: 1.2rem;
+      }
+
+      table {
+        font-size: 0.85rem;
+      }
+
+      th, td {
+        padding: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 OKR Progress Report — Skills Showcase</h1>
+      <div class="meta">
+        <span><strong>Project:</strong> FiNAN Ry — Nonprofit Digital Modernization</span>
+        <span><strong>Role:</strong> Volunteer IT Specialist</span>
+        <span><strong>Period:</strong> 3 months (January 2026 - April 2026)</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>🎯 1. Objective</h2>
+      <p>Modernize FiNAN Ry's digital infrastructure to automate membership operations, establish a professional online presence, and enable scalable growth for the Filipino nurses community across the Nordic region.</p>
+    </section>
+
+    <section>
+      <h2>📌 2. Key Results</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>KR</th>
+            <th>Description</th>
+            <th>Target</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>KR1</strong></td>
+            <td>Redesign and deploy organization website (finan.eu.com)</td>
+            <td>Live site</td>
+            <td><span class="status-badge status-done">Done</span></td>
+          </tr>
+          <tr>
+            <td><strong>KR2</strong></td>
+            <td>Build automated membership registration with Stripe payment integration</td>
+            <td>Payment automation live</td>
+            <td><span class="status-badge status-done">Done</span></td>
+          </tr>
+          <tr>
+            <td><strong>KR3</strong></td>
+            <td>Migrate email infrastructure to FastMail with custom domain setup</td>
+            <td>Email migration complete</td>
+            <td><span class="status-badge status-done">Done</span></td>
+          </tr>
+          <tr>
+            <td><strong>KR4</strong></td>
+            <td>Create technical documentation for handover and onboarding</td>
+            <td>docs.finan.eu.com live</td>
+            <td><span class="status-badge status-done">Done</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>✅ 3. Progress</h2>
+      
+      <h3>What the Organization Needed</h3>
+      <p><strong>Filipino Nurses Association-Nordic (FiNAN)</strong> is a registered non-profit organization dedicated to connecting, supporting, and advocating for Filipino nurses across the Nordic region.</p>
+      
+      <p>FiNAN serves as a professional bridge for Filipino nurses working in:</p>
+      <ul class="checklist">
+        <li>🇩🇰 Denmark, 🇫🇴 Faroe Islands, 🇫🇮 Finland (including 🇦🇽 Åland)</li>
+        <li>🇬🇱 Greenland, 🇮🇸 Iceland, 🇳🇴 Norway, 🇸🇪 Sweden</li>
+      </ul>
+
+      <p><strong>Official Registrations:</strong> Finland (PRH: 3084026-2), Denmark (Erhvervsstyrelsen: 40349367), Sweden (Skatteverket: 802537-7097), Iceland (Ríkisskattstjóri: 5208190450)</p>
+
+      <p><strong>Mission Focus:</strong></p>
+      <ul>
+        <li><strong>Licensing & Accreditation:</strong> Navigating regulatory requirements in each Nordic country</li>
+        <li><strong>Cultural Integration:</strong> Helping nurses thrive in new social and professional environments</li>
+        <li><strong>Professional Development:</strong> Promoting continuous learning and career growth</li>
+      </ul>
+
+      <blockquote>
+        <strong>The problem:</strong> The membership process was fully manual. Members registered through the website, then paid via bank transfer. A board member had to manually verify each payment before granting access to member content. This workflow was slow, error-prone, difficult to scale, and depended entirely on specific individuals. There was no technical documentation for handover or onboarding.
+      </blockquote>
+
+      <h3>What I Delivered</h3>
+      <ul class="tasks">
+        <li>✅ <strong>Built Stripe automation</strong> — automated membership registration and payment flow, eliminated manual bank-transfer verification</li>
+        <li>✅ <strong>Redesigned website</strong> — deployed <a href="https://finan.eu.com" target="_blank">finan.eu.com</a> with improved performance and maintainability</li>
+        <li>✅ <strong>Customized Ghost CMS theme</strong> — modified Ghost theme to meet FiNAN's specific needs, source code available at <a href="https://github.com/finan-eu/finan-puls" target="_blank">github.com/finan-eu/finan-puls</a></li>
+        <li>✅ <strong>Migrated email infrastructure</strong> — moved from legacy setup to FastMail, improved security and communication reliability</li>
+        <li>✅ <strong>Created technical documentation</strong> — comprehensive docs at <a href="https://docs.finan.eu.com" target="_blank">docs.finan.eu.com</a> for onboarding and future handover</li>
+      </ul>
+
+      <h3>Stakeholder Dynamics</h3>
+      <p>Some board members preferred keeping manual checks (felt safer). Resolved by mapping full process with them, showing where manual steps created delays and avoidable errors. Agreed on phased automation with clear checkpoints and visibility.</p>
+
+      <h3>Current Blockers</h3>
+      <ul class="tasks">
+        <li>⏳ <strong>Waiting on board approval</strong> — need FiNAN board sign-off before publishing case study publicly</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>⏭️ 4. Next Steps</h2>
+
+      <h3>FiNAN-Specific Tasks</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Priority</th>
+            <th>Task</th>
+            <th>Due</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="priority-badge priority-p0">P0</span></td>
+            <td>Board approval for public case study</td>
+            <td>2026-04-25</td>
+            <td>Follow up with FiNAN board</td>
+          </tr>
+          <tr>
+            <td><span class="priority-badge priority-p1">P1</span></td>
+            <td>Add impact metrics to documentation</td>
+            <td>2026-04-27</td>
+            <td>Quantify time saved, error reduction rate</td>
+          </tr>
+          <tr>
+            <td><span class="priority-badge priority-p2">P2</span></td>
+            <td>Finalize video deliverables</td>
+            <td>2026-04-30</td>
+            <td>Complete remaining video content</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>💡 5. Learnings & Insights</h2>
+      
+      <div class="insight-grid">
+        <div class="insight-card">
+          <h4>✅ What Worked Well</h4>
+          <p><strong>Real production work > tutorial projects</strong> — FiNAN is actual impact with measurable outcomes</p>
+          <p><strong>Documentation while building</strong> — writing knowledge base during implementation made slides easier</p>
+          <p><strong>Phased approach wins buy-in</strong> — incremental rollout reduced stakeholder resistance</p>
+        </div>
+
+        <div class="insight-card">
+          <h4>⚠️ Challenges Faced</h4>
+          <p><strong>Stakeholder alignment takes time</strong> — should have started approval conversation earlier</p>
+          <p><strong>Metrics not tracked upfront</strong> — didn't measure baseline admin time before automation</p>
+          <p><strong>Scope ambiguity</strong> — clarified deliverables before committing to avoid misunderstandings</p>
+        </div>
+
+        <div class="insight-card">
+          <h4>🔍 Unexpected Observations</h4>
+          <p><strong>Volunteer work resonates stronger</strong> — non-profit with social impact is more compelling</p>
+          <p><strong>Technical depth needs tuning</strong> — need separate executive summary for non-technical recruiters</p>
+          <p><strong>Influence without authority</strong> — earned alignment through clarity and reliable execution</p>
+        </div>
+
+        <div class="insight-card">
+          <h4>🔁 Patterns to Repeat</h4>
+          <p>Map the full workflow with stakeholders before proposing solutions</p>
+          <p>Bring options with risks explained in business terms</p>
+          <p>Document as you go — future maintainers will thank you</p>
+          <p>Start approval conversations early with external organizations</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>🛠️ Technical Stack</h2>
+      
+      <h3>FiNAN Project</h3>
+      <div class="tech-stack">
+        <span class="tech-tag">Stripe API</span>
+        <span class="tech-tag">Ghost CMS</span>
+        <span class="tech-tag">Custom Theme (finan-puls)</span>
+        <span class="tech-tag">FastMail</span>
+        <span class="tech-tag">Workflow Automation</span>
+        <span class="tech-tag">Technical Documentation</span>
+      </div>
+
+      <h3>Showcase Site</h3>
+      <div class="tech-stack">
+        <span class="tech-tag">React 19</span>
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">Tailwind CSS v4</span>
+        <span class="tech-tag">poncardas.com</span>
+        <span class="tech-tag">Tailscale</span>
+      </div>
+
+      <h3>Links</h3>
+      <ul>
+        <li>Organization Website: <a href="https://finan.eu.com" target="_blank">finan.eu.com</a></li>
+        <li>Technical Documentation: <a href="https://docs.finan.eu.com" target="_blank">docs.finan.eu.com</a></li>
+        <li>GitHub Organization: <a href="https://github.com/finan-eu" target="_blank">github.com/finan-eu</a></li>
+      </ul>
+    </section>
+
+    <footer>
+      <p><strong>Next review date:</strong> 2026-04-27</p>
+      <p>Skills Showcase — Mchael Poncardas</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -81,10 +81,15 @@
       margin: 1.5rem 0 0.8rem;
     }
 
+    .table-wrapper {
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1rem 0;
+      min-width: 600px;
     }
 
     th, td {
@@ -295,7 +300,8 @@
 
     <section>
       <h2>📌 2. Key Results</h2>
-      <table>
+      <div class="table-wrapper">
+        <table>
         <thead>
           <tr>
             <th>KR</th>
@@ -331,6 +337,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </section>
 
     <section>
@@ -376,7 +383,8 @@
       <h2>⏭️ 4. Next Steps</h2>
 
       <h3>FiNAN-Specific Tasks</h3>
-      <table>
+      <div class="table-wrapper">
+        <table>
         <thead>
           <tr>
             <th>Priority</th>
@@ -406,6 +414,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </section>
 
     <section>
